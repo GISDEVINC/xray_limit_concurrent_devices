@@ -5,6 +5,7 @@ read IP_FILE
 # 确保IP记录文件存在
 mkdir -p "$(dirname "$IP_FILE")"
 touch "$IP_FILE"
+> "$IP_FILE"
 echo -e "请输入限制设备数量."
 read MAX_IP
 echo -e "请输入代理服务所在端口."
