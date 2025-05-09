@@ -1,5 +1,7 @@
-LOG_FILE="access.log"
-IP_FILE="ip_list.txt"
+echo -e "请输入xray日志文件路径."
+read LOG_FILE
+echo -e "请输入IP记录文本路径."
+read IP_FILE
 # 确保IP记录文件存在
 mkdir -p "$(dirname "$IP_FILE")"
 touch "$IP_FILE"
