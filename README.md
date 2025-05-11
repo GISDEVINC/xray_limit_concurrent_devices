@@ -1,40 +1,40 @@
 # xray_limit_concurrent_devices
 
-Limit total concurrently online devices for Xray. Noted: each device is assumed to have a unique IP address. 
+限制Xray同时在线设备总数。注意：假设每个设备有不同的IP地址。
 
-## 📝 Overview
+## 📝 概述
 
-Xray failed to limit concurrently online devices, causing frustration for many users. This repo provides a reference implementation for this feature. 
+Xray未能提供限制同时在线设备数的功能，是诸多用户的痛点之一。本仓库为该功能提供一种可能的实现方式。
 
-## 🚀 Features
+## 🚀 特性
 
-- Custom Xray log path and text file path. 
-- Custom the total count of the concurrently online devices. 
-- Custom the port Xray listening to.
-- Custom limitations for different clients. 
+- 自定义Xray日志路径和文本文件路径。
+- 自定义同时在线设备的总数。
+- 自定义Xray监听的端口。
+- 为不同Client定制限制。
 
-## 🛠️ Installation / Setup
+## 🛠️ 安装/设置
 
 ```bash
-# Install dependencies
+# 安装依赖
 apt install inotify-tools dsniff screen
 
-# Download and modify the permission for the shell file. 
+# 下载并修改脚本文件权限
 curl -O https://raw.githubusercontent.com/GISDEVINC/xray_limit_concurrent_devices/main/xray_limit_concurrent_devices.sh
 chmod -R 775 xray_limit_concurrent_devices.sh
 
-# Create a new session
+# 创建一个新的会话
 screen -S monitor_devices
 
-# Start the script. Please see below the specific parameter configuration. 
+# 启动脚本。请查看下面具体的参数说明。
 bash xray_limit_concurrent_devices.sh
 
-# detach the session
-Press Ctrl+A+D
+# 分离会话
+按 Ctrl+A+D
 
-## ⚙️ Parameter configuration
-- Xray日志文件路径: The value specified in the 'access' field of the 'log' in config.json of Xray, e.g., /var/access.log.
-- IP记录文本路径: The specific path of the text file used to record recent successfully-established IP addresses. For example, /var/ip_list.txt.
-- 限制设备数量: The total count of concurrently online devices you wish. For example, 3.
-- 代理服务所在端口: The port Xray listening to. For example, 12345.
-- 用户组标识符: A unique identifier used to match the client. Leaving it empty means Xray allows only a total of specific count of IPs to connect simultaneously, regardless of inbounds and clients. 
+## ⚙️ 参数配置
+- Xray日志文件路径: 在Xray的config.json文件中log字段的access部分指定的值。例如：/var/access.log。
+- IP记录文本路径: 文本具体路径，脚本会根据路径自动新建文本。例如：/var/ip_list.txt。
+- 限制设备数量: 最大同时在线设备数量。例如：3。
+- 代理服务所在端口: 代理监听的端口。例如：12345。
+- 用户组标识符: 唯一标识符，用于判定Client。如果留空，表示整个Xray仅允许特定数量的IP同时连接，无论inbound和client。
