@@ -21,7 +21,7 @@ apt install inotify-tools dsniff screen
 
 # 下载并修改脚本文件权限
 curl -O https://raw.githubusercontent.com/GISDEVINC/xray_limit_concurrent_devices/main/xray_limit_concurrent_devices.sh
-chmod -R 775 xray_limit_concurrent_devices.sh
+chmod -R 755 xray_limit_concurrent_devices.sh
 
 # 创建一个新的会话
 screen -S monitor_devices
